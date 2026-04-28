@@ -54,8 +54,8 @@ function AppContent() {
             {t('brand')}
           </Link>
           <div className="navbar-nav" style={{ alignItems: 'center' }}>
-            <select 
-              onChange={changeLanguage} 
+            <select
+              onChange={changeLanguage}
               defaultValue={i18n.language}
               style={{
                 padding: '0.4rem 0.8rem',

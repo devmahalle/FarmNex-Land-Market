@@ -17,7 +17,7 @@ const Login = () => {
     setError('');
 
     const result = await login(formData);
-    
+
     if (result.success) {
       const userRole = result.user.role;
       if (userRole === 'seller') navigate('/seller');
@@ -37,39 +37,39 @@ const Login = () => {
           <h2>Welcome Back</h2>
           <p style={{ color: 'var(--color-text-muted)' }}>Sign in to your account</p>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Username</label>
-            <input 
-              type="text" 
-              name="username" 
+            <input
+              type="text"
+              name="username"
               className="form-input"
-              value={formData.username} 
-              onChange={handleChange} 
+              value={formData.username}
+              onChange={handleChange}
               placeholder="Enter your username"
-              required 
+              required
             />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input 
-              type="password" 
-              name="password" 
+            <input
+              type="password"
+              name="password"
               className="form-input"
-              value={formData.password} 
-              onChange={handleChange} 
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Enter your password"
-              required 
+              required
             />
           </div>
-          
+
           {error && (
-            <div style={{ 
-              background: '#fee2e2', 
-              color: '#b91c1c', 
-              padding: '0.75rem', 
-              borderRadius: 'var(--radius-md)', 
+            <div style={{
+              background: '#fee2e2',
+              color: '#b91c1c',
+              padding: '0.75rem',
+              borderRadius: 'var(--radius-md)',
               marginBottom: '1rem',
               display: 'flex',
               alignItems: 'center',
@@ -78,10 +78,10 @@ const Login = () => {
               <i className="fas fa-exclamation-circle"></i> {error}
             </div>
           )}
-          
-          <button 
-            type="submit" 
-            className="btn btn-primary btn-block" 
+
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
             disabled={loading}
           >
             {loading ? (
@@ -91,12 +91,12 @@ const Login = () => {
             )}
           </button>
         </form>
-        
+
         <div style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--color-text-muted)' }}>
           Don't have an account? <Link to="/register" style={{ color: 'var(--color-primary)', fontWeight: '600' }}>Register now</Link>
         </div>
 
-      
+
         <div style={{ marginTop: '1.5rem', padding: '1rem', background: '#f4f5f7', border: '1px solid var(--color-border)', fontSize: '0.75rem', color: 'var(--color-text-muted)', borderRadius: 'var(--radius-sm)' }}>
           <strong>System Status:</strong><br />
           API Endpoint: <code style={{ color: 'var(--color-primary-dark)', fontWeight: '600' }}>{require('../config').API_URL}</code>

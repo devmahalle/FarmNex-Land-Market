@@ -19,20 +19,15 @@ const SellerDashboard = () => {
   };
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath || (Array.isArray(imagePath) && imagePath.length === 0)) {
-      return "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80";
-    }
-    const pathStr = Array.isArray(imagePath) ? imagePath[0] : imagePath;
-    if (pathStr.startsWith('http')) return pathStr;
+    if (!imagePath) return 'https://via.placeholder.com/150';
+    if (imagePath.startsWith('http')) return imagePath;
     
-    let filename = pathStr;
-    if (pathStr.includes('/uploads/')) {
-      filename = pathStr.split('/uploads/')[1];
-    } else if (pathStr.startsWith('uploads/')) {
-      filename = pathStr.replace('uploads/', '');
-    }
-    
-    return `${API_URL}/uploads/${encodeURIComponent(filename)}`;
+    // Ensure we take only the filename if the path includes /uploads/
+    const filename = imagePath.includes('/uploads/') 
+      ? imagePath.split('/uploads/')[1] 
+      : imagePath;
+      
+    return `${API_URL}/uploads/${filename}`;
   };
 
   useEffect(() => {

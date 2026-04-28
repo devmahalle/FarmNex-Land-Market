@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const Listing = require('../models/Listing');
-const { protect, authorize } = require('../middleware/auth'); 
+const { protect, authorize } = require('../middleware/auth');
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -9,8 +9,8 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
 
-const upload = multer({ 
-  storage, 
+const upload = multer({
+  storage,
   limits: { files: 3, fileSize: 5 * 1024 * 1024 }
 });
 
@@ -19,11 +19,11 @@ router.post('/', protect, upload.array('images', 3), async (req, res) => {
     const listingData = {
       sellerId: req.user._id,
       title: req.body.title,
-      city: req.body.city,        
+      city: req.body.city,
       price: Number(req.body.price),
       contact: req.body.contact,
       info: req.body.info,
-      googleMapUrl: req.body.googleMapUrl, 
+      googleMapUrl: req.body.googleMapUrl,
       status: 'pending'
     };
 
@@ -43,11 +43,11 @@ router.get('/', async (req, res) => {
   try {
     const { city } = req.query;
     const query = city ? { city: new RegExp(city, 'i') } : {};
-    
+
     const listings = await Listing.find(query)
       .populate('sellerId', 'name username')
       .sort({ createdAt: -1 });
-    
+
     res.json(listings);
   } catch (err) {
     res.status(500).json({ msg: err.message });
@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
 
 router.get('/seller/me', protect, async (req, res) => {
   try {
-    const listings = await Listing.find({ 
+    const listings = await Listing.find({
       sellerId: req.user._id,
       $or: [
         { status: 'pending' },
@@ -64,9 +64,9 @@ router.get('/seller/me', protect, async (req, res) => {
         { status: 'booked' }
       ]
     })
-    .populate('sellerId', 'name username')
-    .sort({ createdAt: -1 });
-    
+      .populate('sellerId', 'name username')
+      .sort({ createdAt: -1 });
+
     res.json(listings);
   } catch (err) {
     res.status(500).json({ msg: err.message });
@@ -75,13 +75,13 @@ router.get('/seller/me', protect, async (req, res) => {
 
 router.get('/seller/me/sold', protect, async (req, res) => {
   try {
-    const listings = await Listing.find({ 
+    const listings = await Listing.find({
       sellerId: req.user._id,
       status: 'sold'
     })
-    .populate('sellerId', 'name username')
-    .sort({ soldAt: -1 });
-    
+      .populate('sellerId', 'name username')
+      .sort({ soldAt: -1 });
+
     res.json(listings);
   } catch (err) {
     res.status(500).json({ msg: err.message });
@@ -92,11 +92,11 @@ router.get('/:id', async (req, res) => {
   try {
     const listing = await Listing.findById(req.params.id)
       .populate('sellerId', 'name username contact');
-      
+
     if (!listing) {
       return res.status(404).json({ msg: 'Listing not found' });
     }
-    
+
     res.json(listing);
   } catch (err) {
     console.error(err);
@@ -111,9 +111,9 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id/sold', protect, async (req, res) => {
   try {
-    const listing = await Listing.findOne({ 
-      _id: req.params.id, 
-      sellerId: req.user._id 
+    const listing = await Listing.findOne({
+      _id: req.params.id,
+      sellerId: req.user._id
     });
 
     if (!listing) {
@@ -126,12 +126,12 @@ router.put('/:id/sold', protect, async (req, res) => {
 
     listing.status = 'sold';
     listing.soldAt = new Date();
-    
+
     await listing.save();
-    
-    res.json({ 
+
+    res.json({
       msg: 'Farm marked as SOLD successfully!',
-      listing 
+      listing
     });
   } catch (err) {
     console.error(err);

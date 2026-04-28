@@ -18,12 +18,12 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--color-background)', overflowX: 'hidden' }}>
-      
+
       {/* Premium Hero Section */}
-      <div className="hero" style={{ 
-        minHeight: '75vh', 
-        display: 'flex', 
-        flexDirection: 'column', 
+      <div className="hero" style={{
+        minHeight: '75vh',
+        display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         position: 'relative',
         paddingBottom: '8rem' // Extra padding for overlapping search bar
@@ -33,7 +33,7 @@ const Home = () => {
             <i className="fas fa-leaf" style={{ marginRight: '0.5rem' }}></i> {t('indiaNumberOne')}
           </span>
           <h1 style={{ fontSize: '4rem', textShadow: '0 4px 20px rgba(0,0,0,0.4)', lineHeight: '1.1' }}>
-            {t('discoverPerfect')} <br/>
+            {t('discoverPerfect')} <br />
             <span style={{ color: 'var(--color-primary-light)' }}>{t('landAndFarm')}</span>
           </h1>
           <p style={{ fontSize: '1.35rem', marginBottom: '2.5rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
@@ -53,8 +53,8 @@ const Home = () => {
 
       {/* Floating Glassmorphism Search Card */}
       <div style={{ maxWidth: '900px', margin: '-5rem auto 4rem', padding: '0 1.5rem', position: 'relative', zIndex: 10 }}>
-        <div className="card" style={{ 
-          background: 'rgba(255, 255, 255, 0.95)', 
+        <div className="card" style={{
+          background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(20px)',
           padding: '2rem',
           borderRadius: 'var(--radius-lg)',
@@ -63,7 +63,7 @@ const Home = () => {
           <form onSubmit={handleSearch} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
             <div className="form-group" style={{ marginBottom: 0, flex: '1 1 300px' }}>
               <label htmlFor="citySearch" style={{ fontSize: '1rem', color: 'var(--color-text-muted)' }}>
-                <i className="fas fa-map-marker-alt" style={{ color: 'var(--color-primary)', marginRight: '0.5rem' }}></i> 
+                <i className="fas fa-map-marker-alt" style={{ color: 'var(--color-primary)', marginRight: '0.5rem' }}></i>
                 {t('whereLooking')}
               </label>
               <div style={{ position: 'relative', marginTop: '0.5rem' }}>
@@ -87,7 +87,7 @@ const Home = () => {
       </div>
 
 
-      
+
       {/* Modern Features Section */}
       <div style={{ padding: '6rem 1.5rem', backgroundColor: 'white', position: 'relative' }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -98,7 +98,7 @@ const Home = () => {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', maxWidth: '1200px', margin: '0 auto' }}>
-          
+
           <div className="card feature-card" style={{ padding: '3rem 2rem', textAlign: 'center', borderTop: '4px solid var(--color-primary)' }}>
             <div style={{ width: '80px', height: '80px', background: 'var(--color-primary-light)', color: 'var(--color-primary)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '2.5rem', transform: 'rotate(-5deg)' }}>
               <i className="fas fa-shield-alt"></i>
@@ -133,7 +133,7 @@ const Home = () => {
       </div>
 
       {/* CTA Section */}
-      <div style={{ 
+      <div style={{
         background: 'linear-gradient(135deg, var(--color-primary-dark), var(--color-primary))',
         padding: '6rem 1.5rem',
         textAlign: 'center',
